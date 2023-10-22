@@ -6,12 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/game/dataParams/constants.dart';
 import 'package:flutter_application_1/game/music.dart';
-import 'package:flutter_application_1/main.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 late SharedPreferences prefs;
 
-bool switchValueVibro = false;
 final player = AudioPlayer();
 
 class SettingsPreview extends StatefulWidget {
@@ -23,7 +21,7 @@ class _SettingsPreviewState extends State<SettingsPreview>
     with WidgetsBindingObserver {
   final audioControl = AudioControl();
   bool? switchValueSound;
-
+  bool? switchValueVibro;
   @override
   void initState() {
     super.initState();
@@ -52,9 +50,11 @@ class _SettingsPreviewState extends State<SettingsPreview>
     bool soundValue = prefs.getBool('music') ?? false;
 
     setState(() {
+      switchValueVibro = prefs.getBool('vibro') ?? false;
       switchValueSound = soundValue;
     });
     print('play = $switchValueSound');
+    print('vibro = $switchValueSound');
   }
 
   @override
@@ -146,10 +146,13 @@ class _SettingsPreviewState extends State<SettingsPreview>
                                 switchValueSound = value;
 
                                 if (switchValueSound == true) {
+                                  prefs.setBool('music', true);
                                   audioControl.playAudio();
                                 } else if (switchValueSound == false) {
+                                  prefs.setBool('music', false);
                                   audioControl.stopAudio();
                                 } else {
+                                  prefs.setBool('music', false);
                                   audioControl.stopAudio();
                                 }
                               });
@@ -175,14 +178,14 @@ class _SettingsPreviewState extends State<SettingsPreview>
                             width: 200,
                           ),
                           CupertinoSwitch(
-                            value: switchValueVibro,
+                            value: switchValueVibro == null
+                                ? false
+                                : switchValueVibro!,
                             onChanged: (value) {
                               if (value) {
-                                audioControl.playAudio();
-                                prefs.setBool('music', true);
+                                prefs.setBool('vibro', true);
                               } else {
-                                audioControl.stopAudio();
-                                prefs.setBool('music', false);
+                                prefs.setBool('vibro', false);
                               }
                             },
                           ),

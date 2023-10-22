@@ -211,6 +211,14 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_vibration:
+    dependency: "direct main"
+    description:
+      name: flutter_vibration
+      sha256: "67a0f5beee7ba2233071bc66ccf4c8edc9d7e3f668ad0d42e49bc34857247fd5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.4"
   flutter_web_plugins:
     dependency: transitive
     description: flutter

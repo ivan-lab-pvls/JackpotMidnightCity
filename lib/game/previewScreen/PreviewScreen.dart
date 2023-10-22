@@ -8,6 +8,7 @@ import 'package:flutter_application_1/game/dataParams/constants.dart';
 import 'package:flutter_application_1/game/music.dart';
 import 'package:flutter_application_1/game/rewardCoins/rewardCoins.dart';
 import 'package:flutter_application_1/game/settings/settingsPreview.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'chooseGame/chooseGame.dart';
 
@@ -26,14 +27,29 @@ class _PreviewScreenGameState extends State<PreviewScreenGame> {
     } else if (state == AppLifecycleState.resumed) {
       audioControl.playAudio();
     } else if (state == AppLifecycleState.detached) {
-      audioControl.stopAudio(); 
+      audioControl.stopAudio();
     }
   }
 
   @override
   void initState() {
     super.initState();
-    audioControl.playAudio();
+    _loadSharedPreferences();
+  }
+
+  Future<void> _loadSharedPreferences() async {
+    prefs = await SharedPreferences.getInstance();
+    bool soundValue = prefs.getBool('music') ?? false;
+    bool vibroValue = prefs.getBool('vibro') ?? false;
+
+    print('play = $soundValue');
+    print('vibro = $vibroValue');
+
+    if (soundValue == false) {
+      audioControl.stopAudio();
+    } else if (soundValue == true) {
+      audioControl.playAudio();
+    }
   }
 
   @override

@@ -38,6 +38,7 @@ dependencies:
   flutter_slot_machine:
   audioplayers:
   google_fonts: 
+  flutter_vibration:
   connectivity:
   flutter_fortune_wheel:
   shared_preferences:
