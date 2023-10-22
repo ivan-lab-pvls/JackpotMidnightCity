@@ -1,10 +1,9 @@
-import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/game/dataParams/constants.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ArticleFull extends StatefulWidget {
   final String image;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/game/allGames/rouleteGame/rouletePreview.dart';
 import 'package:flutter_application_1/game/allGames/slotGame/slotGamePreview.dart';
 import 'package:flutter_application_1/game/articles/articlesPreviewScreen.dart';
 import 'package:flutter_application_1/game/dataParams/constants.dart';
@@ -100,10 +101,13 @@ class PreviewScreenGame extends StatelessWidget {
                           () {},
                           'assets/images/texts/pookies.png',
                           'assets/images/gamesChoose/pook.png'),
-                      gameItemchoose(
-                          context,
-                          () {},
-                          'assets/images/texts/roulette.png',
+                      gameItemchoose(context, () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => RouleletePreviewScreen(),
+                          ),
+                        );
+                      }, 'assets/images/texts/roulette.png',
                           'assets/images/gamesChoose/roulete.png'),
                       gameItemchoose(context, () {
                         Navigator.of(context).push(

@@ -38,6 +38,7 @@ dependencies:
   flutter_slot_machine:
   google_fonts: 
   connectivity:
+  flutter_fortune_wheel:
   shared_preferences:
 
 dev_dependencies:
@@ -68,6 +69,7 @@ flutter:
     - assets/images/gamesChoose/
     - assets/images/texts/
     - assets/images/slots/
+    - assets/images/slots/bets/
     - assets/images/articles/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
