@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/game/allGames/slotGame/slotGamePreview.dart';
 import 'package:flutter_application_1/game/dataParams/constants.dart';
 import 'package:flutter_application_1/game/rewardCoins/rewardCoins.dart';
 import 'package:flutter_application_1/game/settings/settingsPreview.dart';
@@ -85,10 +86,13 @@ class PreviewScreenGame extends StatelessWidget {
                       const SizedBox(
                         width: 50,
                       ),
-                      gameItemchoose(
-                          context,
-                          () {},
-                          'assets/images/texts/slotMachine.png',
+                      gameItemchoose(context, () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => SlotGame(),
+                          ),
+                        );
+                      }, 'assets/images/texts/slotMachine.png',
                           'assets/images/gamesChoose/slot.png'),
                       gameItemchoose(
                           context,
