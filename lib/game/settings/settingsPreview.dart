@@ -50,7 +50,7 @@ class _SettingsPreviewState extends State<SettingsPreview>
   Future<void> _loadSharedPreferences() async {
     prefs = await SharedPreferences.getInstance();
     bool soundValue = prefs.getBool('music') ?? false;
-    
+
     setState(() {
       switchValueSound = soundValue;
     });
@@ -145,9 +145,10 @@ class _SettingsPreviewState extends State<SettingsPreview>
                                 prefs.setBool('music', value);
                                 switchValueSound = value;
 
-                                if (value) {
-                                  audioControl.stopAudio();
+                                if (switchValueSound == true) {
                                   audioControl.playAudio();
+                                } else if (switchValueSound == false) {
+                                  audioControl.stopAudio();
                                 } else {
                                   audioControl.stopAudio();
                                 }
@@ -178,8 +179,10 @@ class _SettingsPreviewState extends State<SettingsPreview>
                             onChanged: (value) {
                               if (value) {
                                 audioControl.playAudio();
+                                prefs.setBool('music', true);
                               } else {
                                 audioControl.stopAudio();
+                                prefs.setBool('music', false);
                               }
                             },
                           ),

@@ -7,6 +7,7 @@ class AudioControl {
   Future<void> playAudio() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool music = prefs.getBool('music') ?? false;
+    print('play $music');
     if (music) {
       await player.setReleaseMode(ReleaseMode.loop);
       await player.play(

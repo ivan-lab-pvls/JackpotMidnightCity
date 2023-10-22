@@ -25,7 +25,15 @@ class _PreviewScreenGameState extends State<PreviewScreenGame> {
       audioControl.stopAudio();
     } else if (state == AppLifecycleState.resumed) {
       audioControl.playAudio();
+    } else if (state == AppLifecycleState.detached) {
+      audioControl.stopAudio(); 
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    audioControl.playAudio();
   }
 
   @override
