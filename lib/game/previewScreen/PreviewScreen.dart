@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/game/allGames/slotGame/slotGamePreview.dart';
+import 'package:flutter_application_1/game/articles/articlesPreviewScreen.dart';
 import 'package:flutter_application_1/game/dataParams/constants.dart';
 import 'package:flutter_application_1/game/rewardCoins/rewardCoins.dart';
 import 'package:flutter_application_1/game/settings/settingsPreview.dart';
@@ -104,10 +105,13 @@ class PreviewScreenGame extends StatelessWidget {
                           () {},
                           'assets/images/texts/roulette.png',
                           'assets/images/gamesChoose/roulete.png'),
-                      gameItemchoose(
-                          context,
-                          () {},
-                          'assets/images/texts/articles.png',
+                      gameItemchoose(context, () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => ArticlesPreviewScreen(),
+                          ),
+                        );
+                      }, 'assets/images/texts/articles.png',
                           'assets/images/gamesChoose/article.png'),
                       const SizedBox(
                         width: 50,
