@@ -39,6 +39,8 @@ Future<void> fetchData() async {
     return;
   }
 
+  // await supabase
+
   String data = prefs.getString('keyCoins') ?? 'null';
   print('prefs = $data');
   if (data != 'null') {

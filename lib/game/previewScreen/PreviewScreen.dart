@@ -1,15 +1,33 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/game/allGames/rouleteGame/rouletePreview.dart';
 import 'package:flutter_application_1/game/allGames/slotGame/slotGamePreview.dart';
 import 'package:flutter_application_1/game/articles/articlesPreviewScreen.dart';
 import 'package:flutter_application_1/game/dataParams/constants.dart';
+import 'package:flutter_application_1/game/music.dart';
 import 'package:flutter_application_1/game/rewardCoins/rewardCoins.dart';
 import 'package:flutter_application_1/game/settings/settingsPreview.dart';
 
 import 'chooseGame/chooseGame.dart';
 
-class PreviewScreenGame extends StatelessWidget {
+class PreviewScreenGame extends StatefulWidget {
+  @override
+  State<PreviewScreenGame> createState() => _PreviewScreenGameState();
+}
+
+class _PreviewScreenGameState extends State<PreviewScreenGame> {
+  final audioControl = AudioControl();
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused) {
+      audioControl.stopAudio();
+    } else if (state == AppLifecycleState.resumed) {
+      audioControl.playAudio();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
