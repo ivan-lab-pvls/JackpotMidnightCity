@@ -1,14 +1,10 @@
 import 'dart:ui';
 
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/game/dataParams/constants.dart';
-import 'package:flutter_application_1/game/music.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-final player = AudioPlayer();
 
 class SettingsPreview extends StatefulWidget {
   @override
@@ -17,7 +13,6 @@ class SettingsPreview extends StatefulWidget {
 
 class _SettingsPreviewState extends State<SettingsPreview>
     with WidgetsBindingObserver {
-  final audioControl = AudioControl();
   bool switchValueSound = false;
   bool switchValueVibro = false;
   late SharedPreferences prefs;
@@ -28,7 +23,6 @@ class _SettingsPreviewState extends State<SettingsPreview>
     WidgetsBinding.instance.addObserver(this);
     _loadSharedPreferences();
   }
-
 
   Future<void> _loadSharedPreferences() async {
     prefs = await SharedPreferences.getInstance();

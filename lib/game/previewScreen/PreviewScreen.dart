@@ -1,6 +1,4 @@
 import 'dart:async';
-
-import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/game/allGames/pookies/pookies_game.dart';
@@ -11,6 +9,7 @@ import 'package:flutter_application_1/game/music.dart';
 import 'package:flutter_application_1/game/rewardCoins/rewardCoins.dart';
 import 'package:flutter_application_1/game/settings/settingsPreview.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:vibration/vibration.dart';
 
 import 'chooseGame/chooseGame.dart';
 
@@ -24,17 +23,6 @@ class _PreviewScreenGameState extends State<PreviewScreenGame> {
   late Timer timer;
   late SharedPreferences prefs;
 
-  // @override
-  // void didChangeAppLifecycleState(AppLifecycleState state) {
-  //   if (state == AppLifecycleState.paused) {
-  //     audioControl.stopAudio();
-  //   } else if (state == AppLifecycleState.resumed) {
-  //     audioControl.playAudio();
-  //   } else if (state == AppLifecycleState.detached) {
-  //     audioControl.stopAudio();
-  //   }
-  // }
-
   @override
   void initState() {
     super.initState();
@@ -43,10 +31,11 @@ class _PreviewScreenGameState extends State<PreviewScreenGame> {
     });
   }
 
+  bool vibroValue = false;
   Future<void> _loadSharedPreferences() async {
     prefs = await SharedPreferences.getInstance();
     bool soundValue = prefs.getBool('music') ?? false;
-    bool vibroValue = prefs.getBool('vibro') ?? false;
+    vibroValue = prefs.getBool('vibro') ?? false;
     if (soundValue == true) {
       audioControl.playAudio();
     } else {
@@ -130,6 +119,9 @@ class _PreviewScreenGameState extends State<PreviewScreenGame> {
                         flex: 10,
                       ),
                       gameItemchoose(context, () {
+                        if (vibroValue == true) {
+                          Vibration.vibrate();
+                        }
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => SlotGame(),
@@ -148,6 +140,9 @@ class _PreviewScreenGameState extends State<PreviewScreenGame> {
                           'assets/images/gamesChoose/pook.png'),
                       const Spacer(),
                       gameItemchoose(context, () {
+                        if (vibroValue == true) {
+                          Vibration.vibrate();
+                        }
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => RouleletePreviewScreen(),
@@ -157,6 +152,9 @@ class _PreviewScreenGameState extends State<PreviewScreenGame> {
                           'assets/images/gamesChoose/roulete.png'),
                       const Spacer(),
                       gameItemchoose(context, () {
+                        if (vibroValue == true) {
+                          Vibration.vibrate();
+                        }
                         Navigator.of(context).push(
                           MaterialPageRoute(
                             builder: (context) => ArticlesPreviewScreen(),
