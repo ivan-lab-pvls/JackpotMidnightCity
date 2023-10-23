@@ -103,25 +103,24 @@ class _ArticlesStatePreviewScreen extends State<ArticlesPreviewScreen> {
                             ),
                           ),
                           const Spacer(),
-                          SizedBox(
-                            width: 100,
-                            child: Text(
-                              'Balance: ',
-                              style: GoogleFonts.bebasNeue(
-                                color: const Color.fromARGB(
-                                  255,
-                                  134,
-                                  57,
-                                  147,
+                           SizedBox(
+                                width: 150,
+                                child: Text(
+                                  'Balance: ',
+                                  style: GoogleFonts.bebasNeue(
+                                    color: const Color.fromARGB(
+                                      255,
+                                      134,
+                                      57,
+                                      147,
+                                    ),
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 50,
+                                  ),
                                 ),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 27,
                               ),
-                            ),
-                          ),
-                          const SizedBox(height: 2),
                           Padding(
-                            padding: const EdgeInsets.only(right: 10.0),
+                            padding: const EdgeInsets.only(right: 20.0),
                             child: Text(
                               coins.toString(),
                               style: GoogleFonts.bebasNeue(

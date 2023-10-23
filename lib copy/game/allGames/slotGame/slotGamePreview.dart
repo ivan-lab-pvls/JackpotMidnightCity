@@ -221,13 +221,14 @@ class _RewardCoinsState extends State<SlotGame> {
                                         mainAxisSize: MainAxisSize.min,
                                         children: [
                                           Text(
-                            'WIN:',
-                            style: GoogleFonts.bebasNeue(
-                              color: const Color.fromARGB(255, 134, 57, 147),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 35,
-                            ),
-                          ),
+                                            'WIN:',
+                                            style: GoogleFonts.bebasNeue(
+                                              color: const Color.fromARGB(
+                                                  255, 134, 57, 147),
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 35,
+                                            ),
+                                          ),
                                           const SizedBox(width: 12),
                                           Text(
                                             win.toString(),

@@ -158,7 +158,7 @@ class _RewardCoinsState extends State<RewardCoins> {
                             ),
                           ),
                           const SizedBox(
-                            width: 80,
+                            width: 50,
                           ),
                           Text(
                             textRewardDefauly,
@@ -171,7 +171,7 @@ class _RewardCoinsState extends State<RewardCoins> {
                         ],
                       ),
                       Padding(
-                        padding: const EdgeInsets.only(left: 480.0, top: 200),
+                        padding: const EdgeInsets.only(left: 400.0, top: 200),
                         child: Align(
                           alignment: Alignment.center,
                           child: InkWell(

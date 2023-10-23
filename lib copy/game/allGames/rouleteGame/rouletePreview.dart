@@ -299,7 +299,7 @@ class _RouletePreviewScreenState extends State<RouleletePreviewScreen> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                  SizedBox(
+                                    SizedBox(
                                 width: 150,
                                 child: Text(
                                   'Balance: ',
@@ -435,7 +435,7 @@ class _RouletePreviewScreenState extends State<RouleletePreviewScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                         Text(
+                           Text(
                             'WIN:',
                             style: GoogleFonts.bebasNeue(
                               color: const Color.fromARGB(255, 134, 57, 147),

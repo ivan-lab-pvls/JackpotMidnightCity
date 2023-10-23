@@ -318,7 +318,7 @@ class _PookiesGameState extends State<PookiesGame> {
                           height: ParamsAxis(context).height * 0.6,
                           child: Column(
                             children: [
-                            SizedBox(
+                             SizedBox(
                                 width: 150,
                                 child: Text(
                                   'Balance: ',

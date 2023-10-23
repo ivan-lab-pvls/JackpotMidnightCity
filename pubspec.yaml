@@ -43,11 +43,12 @@ dependencies:
   audioplayers:
   google_fonts: 
   dio:
-
+  vibration:
   flutter_vibration:
   connectivity:
   flutter_fortune_wheel:
   shared_preferences:
+  infinite_carousel: ^1.0.2
 
 dev_dependencies:
   flutter_test:

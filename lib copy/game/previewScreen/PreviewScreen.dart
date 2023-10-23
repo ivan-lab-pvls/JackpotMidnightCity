@@ -151,7 +151,7 @@ class _PreviewScreenGameState extends State<PreviewScreenGame> {
                       }, 'assets/images/texts/roulette.png',
                           'assets/images/gamesChoose/roulete.png'),
                       const Spacer(),
-                      gameItemchoosex(context, () {
+                      gameItemchoose(context, () {
                         if (vibroValue == true) {
                           Vibration.vibrate();
                         }
