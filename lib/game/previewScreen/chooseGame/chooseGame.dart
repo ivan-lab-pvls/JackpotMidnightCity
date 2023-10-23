@@ -54,8 +54,7 @@ Widget gameItemchoosex(
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
       SizedBox(
-        height: 20,
-        width: 100,
+        height: 16,
         child: Image.asset(text),
       ),
       const SizedBox(
