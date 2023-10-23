@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,36 +21,36 @@ class PreviewScreenGame extends StatefulWidget {
 
 class _PreviewScreenGameState extends State<PreviewScreenGame> {
   final audioControl = AudioControl();
+  late Timer timer;
+  late SharedPreferences prefs;
 
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.paused) {
-      audioControl.stopAudio();
-    } else if (state == AppLifecycleState.resumed) {
-      audioControl.playAudio();
-    } else if (state == AppLifecycleState.detached) {
-      audioControl.stopAudio();
-    }
-  }
+  // @override
+  // void didChangeAppLifecycleState(AppLifecycleState state) {
+  //   if (state == AppLifecycleState.paused) {
+  //     audioControl.stopAudio();
+  //   } else if (state == AppLifecycleState.resumed) {
+  //     audioControl.playAudio();
+  //   } else if (state == AppLifecycleState.detached) {
+  //     audioControl.stopAudio();
+  //   }
+  // }
 
   @override
   void initState() {
     super.initState();
-    _loadSharedPreferences();
+    timer = Timer.periodic(Duration(seconds: 5), (Timer t) {
+      _loadSharedPreferences();
+    });
   }
 
   Future<void> _loadSharedPreferences() async {
     prefs = await SharedPreferences.getInstance();
     bool soundValue = prefs.getBool('music') ?? false;
     bool vibroValue = prefs.getBool('vibro') ?? false;
-
-    print('play = $soundValue');
-    print('vibro = $vibroValue');
-
-    if (soundValue == false) {
-      audioControl.stopAudio();
-    } else if (soundValue == true) {
+    if (soundValue == true) {
       audioControl.playAudio();
+    } else {
+      audioControl.stopAudio();
     }
   }
 

@@ -7,22 +7,37 @@ import 'package:flutter_application_1/game/data/constants.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'game/dataParams/constants.dart';
+import 'game/music.dart';
 import 'game/previewScreen/PreviewScreen.dart';
 
-late SharedPreferences prefs;
 bool newCoinsAvailable = false;
 String showBonus = '';
+late SharedPreferences prefs;
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  prefs = await SharedPreferences.getInstance();
   // OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
   // OneSignal.initialize("77e32082-ea27-42e3-a898-c72e141824ef");
   // OneSignal.Notifications.requestPermission(true);
+
   nonData = delix(nonData, -2);
   // await fetchData();
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final audioControl = AudioControl();
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

@@ -8,8 +8,6 @@ import 'package:flutter_application_1/game/dataParams/constants.dart';
 import 'package:flutter_application_1/game/music.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-late SharedPreferences prefs;
-
 final player = AudioPlayer();
 
 class SettingsPreview extends StatefulWidget {
@@ -20,41 +18,24 @@ class SettingsPreview extends StatefulWidget {
 class _SettingsPreviewState extends State<SettingsPreview>
     with WidgetsBindingObserver {
   final audioControl = AudioControl();
-  bool? switchValueSound;
-  bool? switchValueVibro;
+  bool switchValueSound = false;
+  bool switchValueVibro = false;
+  late SharedPreferences prefs;
+
   @override
   void initState() {
     super.initState();
-    _loadSharedPreferences();
     WidgetsBinding.instance.addObserver(this);
+    _loadSharedPreferences();
   }
 
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    if (state == AppLifecycleState.paused) {
-      audioControl.stopAudio();
-    } else if (state == AppLifecycleState.resumed) {
-      audioControl.playAudio();
-    }
-  }
-
-  // Your existing code
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
-  }
 
   Future<void> _loadSharedPreferences() async {
     prefs = await SharedPreferences.getInstance();
-    bool soundValue = prefs.getBool('music') ?? false;
-
     setState(() {
+      switchValueSound = prefs.getBool('music') ?? false;
       switchValueVibro = prefs.getBool('vibro') ?? false;
-      switchValueSound = soundValue;
     });
-    print('play = $switchValueSound');
-    print('vibro = $switchValueSound');
   }
 
   @override
@@ -137,24 +118,11 @@ class _SettingsPreviewState extends State<SettingsPreview>
                             width: 200,
                           ),
                           CupertinoSwitch(
-                            value: switchValueSound == null
-                                ? false
-                                : switchValueSound!,
+                            value: switchValueSound,
                             onChanged: (value) {
                               setState(() {
-                                prefs.setBool('music', value);
                                 switchValueSound = value;
-
-                                if (switchValueSound == true) {
-                                  prefs.setBool('music', true);
-                                  audioControl.playAudio();
-                                } else if (switchValueSound == false) {
-                                  prefs.setBool('music', false);
-                                  audioControl.stopAudio();
-                                } else {
-                                  prefs.setBool('music', false);
-                                  audioControl.stopAudio();
-                                }
+                                prefs.setBool('music', value);
                               });
                             },
                           ),
@@ -178,13 +146,17 @@ class _SettingsPreviewState extends State<SettingsPreview>
                             width: 200,
                           ),
                           CupertinoSwitch(
-                            value: switchValueVibro == null
-                                ? false
-                                : switchValueVibro!,
+                            value: switchValueVibro,
                             onChanged: (value) {
                               if (value) {
+                                setState(() {
+                                  prefs.setBool('vibro', true);
+                                });
                                 prefs.setBool('vibro', true);
                               } else {
+                                setState(() {
+                                  prefs.setBool('vibro', false);
+                                });
                                 prefs.setBool('vibro', false);
                               }
                             },
