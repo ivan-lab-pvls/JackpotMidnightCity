@@ -146,6 +146,7 @@ class _PreviewScreenGameState extends State<PreviewScreenGame> {
                         );
                       }, 'assets/images/texts/pookies.png',
                           'assets/images/gamesChoose/pook.png'),
+                      const Spacer(),
                       gameItemchoose(context, () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
