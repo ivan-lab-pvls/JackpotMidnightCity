@@ -37,7 +37,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   http: ^1.1.0
   flutter_slot_machine:
-  onesignal_flutter: ^3.5.0
   in_app_review: ^2.0.6
   flutter_inappwebview: ^5.7.2+3
   audioplayers:
@@ -49,6 +48,7 @@ dependencies:
   flutter_fortune_wheel:
   shared_preferences:
   infinite_carousel: ^1.0.2
+  onesignal_flutter: ^5.0.0
 
 dev_dependencies:
   flutter_test:
