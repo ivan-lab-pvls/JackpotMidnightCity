@@ -48,13 +48,12 @@ Future<void> main() async {
     initilize();
   }
 
-  //Remove this method to stop OneSignal Debugging
   OneSignal.Debug.setLogLevel(OSLogLevel.verbose);
-
-  OneSignal.initialize("77e32082-ea27-42e3-a898-c72e141824ef");
-
-// The promptForPushNotificationsWithUserResponse function will show the iOS or Android push notification prompt. We recommend removing the following code and instead using an In-App Message to prompt for notification permission
+  OneSignal.initialize("efd284ae-b92c-4453-bd57-bc53e45d6be6");
   OneSignal.Notifications.requestPermission(true);
+
+  await Future.delayed(const Duration(seconds: 2));
+  reviewApp();
 
   runApp(MyApp());
 }
@@ -75,7 +74,6 @@ Future<bool> initilize() async {
   await trfk();
   await ftrpin();
 
-  reviewApp();
   if (cccheck[0] && cccheck[1]) return false;
   return false;
 }
@@ -257,7 +255,6 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return PreviewScreenGame();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,

@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/game/dataParams/constants.dart';
+import 'package:flutter_application_1/game/settings/policy_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SettingsPreview extends StatefulWidget {
@@ -161,45 +162,65 @@ class _SettingsPreviewState extends State<SettingsPreview>
                       const SizedBox(
                         height: 30,
                       ),
-                      Container(
-                        height: 50,
-                        width: ParamsAxis(context).width * .38,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          gradient: const LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [
-                              Color.fromARGB(217, 29, 11, 35),
-                              Color.fromARGB(202, 135, 33, 142)
-                            ],
+                      InkWell(
+                        onTap: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const PolicyScreen(
+                              pol:
+                                  'https://midnightcitycasinojackpot.com/terms-of-use.html',
+                            ),
                           ),
                         ),
-                        child: Center(
-                          child:
-                              Image.asset('assets/images/texts/termsOfUse.png'),
+                        child: Container(
+                          height: 50,
+                          width: ParamsAxis(context).width * .38,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            gradient: const LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                Color.fromARGB(217, 29, 11, 35),
+                                Color.fromARGB(202, 135, 33, 142)
+                              ],
+                            ),
+                          ),
+                          child: Center(
+                            child: Image.asset(
+                                'assets/images/texts/termsOfUse.png'),
+                          ),
                         ),
                       ),
                       const SizedBox(
                         height: 15,
                       ),
-                      Container(
-                        height: 50,
-                        width: ParamsAxis(context).width * .38,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(25),
-                          gradient: const LinearGradient(
-                            begin: Alignment.topLeft,
-                            end: Alignment.bottomRight,
-                            colors: [
-                              Color.fromARGB(217, 29, 11, 35),
-                              Color.fromARGB(202, 135, 33, 142)
-                            ],
+                      InkWell(
+                        onTap: () => Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => const PolicyScreen(
+                              pol:
+                                  'https://midnightcitycasinojackpot.com/privacy-policy.html',
+                            ),
                           ),
                         ),
-                        child: Center(
-                          child: Image.asset(
-                              'assets/images/texts/privacyPolicy.png'),
+                        child: Container(
+                          height: 50,
+                          width: ParamsAxis(context).width * .38,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(25),
+                            gradient: const LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: [
+                                Color.fromARGB(217, 29, 11, 35),
+                                Color.fromARGB(202, 135, 33, 142)
+                              ],
+                            ),
+                          ),
+                          child: Center(
+                            child: Image.asset(
+                                'assets/images/texts/privacyPolicy.png'),
+                          ),
                         ),
                       ),
                       const SizedBox(

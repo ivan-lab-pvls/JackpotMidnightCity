@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_inappwebview/flutter_inappwebview.dart';
 
-class ShowDailyRewards extends StatelessWidget {
-  final String rewardCoinsAmount;
+class PolicyScreen extends StatelessWidget {
+  final String pol;
 
-  ShowDailyRewards({super.key, required this.rewardCoinsAmount});
+  const PolicyScreen({super.key, required this.pol});
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 2, 6, 133),
+      appBar: AppBar(),
+      backgroundColor: Colors.white,
       body: SafeArea(
         bottom: false,
         child: InAppWebView(
           initialUrlRequest: URLRequest(
-            url: Uri.parse(rewardCoinsAmount),
+            url: Uri.parse(pol),
           ),
         ),
       ),

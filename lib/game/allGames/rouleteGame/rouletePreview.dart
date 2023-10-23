@@ -7,6 +7,7 @@ import 'package:flutter_application_1/main.dart';
 import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:math' as _math;
 
 class RouleletePreviewScreen extends StatefulWidget {
   @override
@@ -233,9 +234,24 @@ class _RouletePreviewScreenState extends State<RouleletePreviewScreen> {
                               FortuneWheel(
                                 animateFirst: false,
                                 selected: selected.stream,
+                                indicators: const [
+                                  FortuneIndicator(
+                                    alignment: Alignment.topCenter,
+                                    child: TriangleIndicator(),
+                                  ),
+                                ],
                                 items: [
                                   for (var it in items)
                                     FortuneItem(
+                                      style: FortuneItemStyle(
+                                        color: items.indexOf(it) % 2 == 0
+                                            ? const Color(0xFF571675)
+                                                .withOpacity(0.5)
+                                            : const Color(0xFF277a94)
+                                                .withOpacity(0.5),
+                                        borderColor: const Color(0xFF5e3770),
+                                        borderWidth: 2,
+                                      ),
                                       child: Padding(
                                         padding:
                                             const EdgeInsets.only(left: 60),
@@ -470,6 +486,27 @@ class _RouletePreviewScreenState extends State<RouleletePreviewScreen> {
           }
         },
       ),
+    );
+  }
+}
+
+class TriangleIndicator extends StatelessWidget {
+  const TriangleIndicator({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    return Transform.rotate(
+      angle: _math.pi,
+      child: SizedBox(
+          width: 36,
+          height: 36,
+          child: Transform.rotate(
+            angle: 3.14159265,
+            child: Image.asset('assets/images/icons/arrowx.png'),
+          )),
     );
   }
 }
