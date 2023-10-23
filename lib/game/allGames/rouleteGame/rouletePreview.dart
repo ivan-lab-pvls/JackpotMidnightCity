@@ -12,7 +12,7 @@ class RouleletePreviewScreen extends StatefulWidget {
 }
 
 class _RouletePreviewScreenState extends State<RouleletePreviewScreen> {
-  StreamController<int> selected = StreamController<int>();
+  StreamController<int> selected = StreamController<int>.broadcast();
   Stream<int>? selectedx;
   int bet = 0;
   bool shouldSpin = false;
@@ -189,147 +189,139 @@ class _RouletePreviewScreenState extends State<RouleletePreviewScreen> {
                   fit: BoxFit.cover,
                 ),
               ),
-              child: Stack(
-                children: [
-                  Column(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  const SizedBox(
+                    height: 40,
+                  ),
+                  Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
+                    children: [
                       const SizedBox(
-                        height: 40,
+                        width: 40,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(
-                            width: 80,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Navigator.pop(context);
-                            },
-                            child: Container(
-                              height: 40,
-                              width: 40,
-                              child: Image.asset(
-                                  'assets/images/icons/arrowBack.png'),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20.0),
-                            child: Container(
-                              height: ParamsAxis(context).height * .7,
-                              width: ParamsAxis(context).width * .4,
-                              child: Stack(
-                                children: [
-                                  Container(
-                                      height: ParamsAxis(context).height * .8,
-                                      width: ParamsAxis(context).width * .44,
-                                      child: Image.asset(
-                                          'assets/images/bg/bgRouleteWheel.png')),
-                                  FortuneWheel(
-                                    animateFirst: false,
-                                    selected: selected.stream,
-                                    items: [
-                                      for (var it in items)
-                                        FortuneItem(
-                                          child: Padding(
-                                            padding:
-                                                const EdgeInsets.only(left: 60),
-                                            child: Container(
-                                              child: Image.asset(
-                                                it,
-                                                fit: BoxFit.contain,
-                                              ),
-                                            ),
+                      InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Image.asset(
+                          'assets/images/icons/arrowBack.png',
+                          height: 40,
+                          width: 40,
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 0),
+                        child: SizedBox(
+                          height: ParamsAxis(context).height * .7,
+                          width: ParamsAxis(context).width * .4,
+                          child: Stack(
+                            children: [
+                              SizedBox(
+                                  height: ParamsAxis(context).height * .8,
+                                  width: ParamsAxis(context).width * .44,
+                                  child: Image.asset(
+                                      'assets/images/bg/bgRouleteWheel.png')),
+                              FortuneWheel(
+                                animateFirst: false,
+                                selected: selected.stream,
+                                items: [
+                                  for (var it in items)
+                                    FortuneItem(
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 60),
+                                        child: Container(
+                                          child: Image.asset(
+                                            it,
+                                            fit: BoxFit.contain,
                                           ),
                                         ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            width: 10,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 20.0),
-                            child: Container(
-                              height: ParamsAxis(context).height * .6,
-                              width: ParamsAxis(context).width * .14,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Image.asset('assets/images/icons/prize1.png'),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  Image.asset('assets/images/icons/prize2.png'),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  Image.asset('assets/images/icons/prize3.png'),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                  Image.asset('assets/images/icons/prize4.png'),
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          const Spacer(),
-                          Padding(
-                            padding:
-                                const EdgeInsets.only(top: 20.0, right: 30.0),
-                            child: Align(
-                              alignment: Alignment.centerRight,
-                              child: Container(
-                                height: ParamsAxis(context).height * .7,
-                                width: 160,
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                  SizedBox(
-                                width: 150,
-                                child: Text(
-                                  'Balance: ',
-                                  style: GoogleFonts.bebasNeue(
-                                    color: const Color.fromARGB(
-                                      255,
-                                      134,
-                                      57,
-                                      147,
-                                    ),
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 50,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 2),
-                                    Text(
-                                      coins.toString(),
-                                      style: GoogleFonts.bebasNeue(
-                                        color: const Color.fromARGB(
-                                            255, 134, 57, 147),
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 35,
                                       ),
                                     ),
-                                    const SizedBox(
-                                      height: 10,
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 0),
+                        child: SizedBox(
+                          height: ParamsAxis(context).height * .7,
+                          width: ParamsAxis(context).width * .14,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Image.asset('assets/images/icons/prize1.png'),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Image.asset('assets/images/icons/prize2.png'),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Image.asset('assets/images/icons/prize3.png'),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              Image.asset('assets/images/icons/prize4.png'),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 30.0),
+                          child: Align(
+                            alignment: Alignment.centerRight,
+                            child: SizedBox(
+                              height: ParamsAxis(context).height * .7,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Balance: ',
+                                    style: GoogleFonts.bebasNeue(
+                                      color: const Color.fromARGB(
+                                        255,
+                                        134,
+                                        57,
+                                        147,
+                                      ),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 40,
                                     ),
-                                    Container(
-                                      height: ParamsAxis(context).height * .42,
+                                  ),
+                                  const SizedBox(height: 2),
+                                  Text(
+                                    coins.toString(),
+                                    style: GoogleFonts.bebasNeue(
+                                      color: const Color.fromARGB(
+                                          255, 134, 57, 147),
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 40,
+                                    ),
+                                  ),
+                                  const SizedBox(
+                                    height: 10,
+                                  ),
+                                  Expanded(
+                                    child: SizedBox(
                                       width: 85,
                                       child: Center(
                                         child: Stack(
@@ -387,55 +379,24 @@ class _RouletePreviewScreenState extends State<RouleletePreviewScreen> {
                                         ),
                                       ),
                                     ),
-                                  ],
-                                ),
+                                  ),
+                                ],
                               ),
                             ),
-                          )
-                        ],
+                          ),
+                        ),
                       ),
                     ],
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 30, right: 60),
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: InkWell(
-                        onTap: () {
-                          int selectedIndex =
-                              Fortune.randomInt(0, items.length);
-                          if (bet != 0) {
-                            setState(() {
-                              shouldSpin = true;
-                            });
-                            if (shouldSpin) {
-                              selected.add(selectedIndex);
-                              getPrise(selectedIndex);
-
-                              setState(() {
-                                shouldSpin = false;
-                                prizex = 0;
-                              });
-                            }
-                          }
-                        },
-                        child: Container(
-                          height: 67,
-                          width: 99,
-                          child: Image.asset('assets/images/icons/spin.png'),
-                        ),
-                      ),
-                    ),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 15.0),
-                    child: Align(
-                      alignment: Alignment.bottomCenter,
+                  Align(
+                    alignment: Alignment.bottomRight,
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          right: ParamsAxis(context).width * .07),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
                         children: [
-                         Text(
+                          Text(
                             'WIN:',
                             style: GoogleFonts.bebasNeue(
                               color: const Color.fromARGB(255, 134, 57, 147),
@@ -463,6 +424,32 @@ class _RouletePreviewScreenState extends State<RouleletePreviewScreen> {
                               color: const Color.fromARGB(255, 134, 57, 147),
                               fontWeight: FontWeight.bold,
                               fontSize: 35,
+                            ),
+                          ),
+                          InkWell(
+                            onTap: () {
+                              int selectedIndex =
+                                  Fortune.randomInt(0, items.length);
+                              if (bet != 0) {
+                                setState(() {
+                                  shouldSpin = true;
+                                });
+                                if (shouldSpin) {
+                                  selected.add(selectedIndex);
+                                  getPrise(selectedIndex);
+
+                                  setState(() {
+                                    shouldSpin = false;
+                                    prizex = 0;
+                                  });
+                                }
+                              }
+                            },
+                            child: Container(
+                              height: 67,
+                              width: 99,
+                              child:
+                                  Image.asset('assets/images/icons/spin.png'),
                             ),
                           ),
                         ],
