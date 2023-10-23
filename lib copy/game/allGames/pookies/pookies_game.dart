@@ -162,53 +162,39 @@ class _PookiesGameState extends State<PookiesGame> {
 
                             return Stack(
                               children: [
-                                // Positioned(
-                                //   bottom: height * 0.14,
-                                //   left: width * 0.11,
-                                //   child: Image.asset(
-                                //     'assets/images/pookies/bg_slots.png',
-                                //     height: height * 0.4,
-                                //   ),
-                                // ),
                                 Positioned(
                                   bottom: height * 0.14,
                                   left: width * 0.11,
+                                  child: Image.asset(
+                                    'assets/images/pookies/bg_slots.png',
+                                    height: height * 0.4,
+                                  ),
+                                ),
+                                Positioned(
+                                  bottom: height * 0.14,
+                                  left: width * 0.14,
                                   child: SizedBox(
                                     height: height * 0.4,
-                                    width: width * 0.7,
+                                    width: width * 0.65,
                                     child: Row(
                                       children: [
                                         _Slot(
                                           items: itemsIcons[0],
                                           rollSlotController:
                                               _rollSlotController,
-                                          bgPath:
-                                              'assets/images/pookies/bg_left.png',
                                         ),
                                         _Slot(
                                           items: itemsIcons[1],
                                           rollSlotController:
                                               _rollSlotController1,
-                                          bgPath:
-                                              'assets/images/pookies/bg_center.png',
                                         ),
                                         _Slot(
                                           items: itemsIcons[2],
                                           rollSlotController:
                                               _rollSlotController2,
-                                          bgPath:
-                                              'assets/images/pookies/bg_right.png',
                                         ),
                                       ],
                                     ),
-                                  ),
-                                ),
-                                Positioned(
-                                  bottom: height * 0.3,
-                                  left: width * 0.095,
-                                  child: Image.asset(
-                                    'assets/images/pookies/marker.png',
-                                    height: 30,
                                   ),
                                 ),
                                 Positioned(
@@ -332,7 +318,7 @@ class _PookiesGameState extends State<PookiesGame> {
                           height: ParamsAxis(context).height * 0.6,
                           child: Column(
                             children: [
-                            SizedBox(
+                             SizedBox(
                                 width: 150,
                                 child: Text(
                                   'Balance: ',
@@ -481,12 +467,10 @@ class _Slot extends StatelessWidget {
     super.key,
     required this.rollSlotController,
     required this.items,
-    required this.bgPath,
   });
 
   final RollSlotController rollSlotController;
   final List<String> items;
-  final String bgPath;
 
   @override
   Widget build(BuildContext context) {
@@ -495,13 +479,9 @@ class _Slot extends StatelessWidget {
         child: ClipRRect(
           borderRadius: BorderRadius.circular(20),
           child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 8),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              image: DecorationImage(
-                fit: BoxFit.fitWidth,
-                image: AssetImage(bgPath),
-              ),
             ),
             child: RollSlot(
               itemExtend: 60,

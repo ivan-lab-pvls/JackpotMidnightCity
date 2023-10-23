@@ -129,17 +129,14 @@ class _RewardOpenedState extends State<RewardOpened> {
                           // const SizedBox(
                           //   width: 50,
                           // ),
-                          // Spacer(),
-                          Spacer(flex: 2),
-                          Padding(
-                            padding: const EdgeInsets.only(left: 20.0, top: 40),
-                            child: Text(
-                              'WE GIVE YOU 200\nCOINS FOR DAILY\nLOGIN TO THE APPLICATION. WE ARE\nWAITING FOR YOU IN\n24 HOURS!',
-                              style: GoogleFonts.bebasNeue(
-                                color: const Color.fromARGB(255, 196, 48, 222),
-                                fontWeight: FontWeight.w400,
-                                fontSize: 24,
-                              ),
+                          Spacer(),
+
+                          Text(
+                            'WE GIVE YOU 200\nCOINS FOR DAILY\nLOGIN TO THE APPLICATION. WE ARE\nWAITING FOR YOU IN\n24 HOURS!',
+                            style: GoogleFonts.bebasNeue(
+                              color: const Color.fromARGB(255, 196, 48, 222),
+                              fontWeight: FontWeight.w400,
+                              fontSize: 24,
                             ),
                           ),
                           Spacer(flex: 2),
