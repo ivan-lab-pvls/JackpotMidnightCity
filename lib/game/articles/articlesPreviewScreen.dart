@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/game/articles/articleFullPreview.dart';
@@ -147,122 +146,132 @@ class _ArticlesStatePreviewScreen extends State<ArticlesPreviewScreen> {
                       const SizedBox(
                         height: 10,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Container(
-                            height: ParamsAxis(context).height * .65,
-                            width: ParamsAxis(context).width * .4,
-                            child: ListView.builder(
-                              itemCount: articlesData.length,
-                              shrinkWrap: false,
-                              itemBuilder: (BuildContext context, int index) {
-                                if (index >= 0 && index < 4) {
-                                  return Padding(
-                                    padding: const EdgeInsets.only(top: 10.0),
-                                    child: InkWell(
-                                      onTap: () {
-                                        if (selectedIndexes.contains(index)) {
-                                          Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                              builder: (context) => ArticleFull(
-                                                image: articlesData[index]
-                                                    .mainImage,
-                                                title: articlesData[index].name,
-                                                bigText: articlesData[index]
-                                                    .mainText,
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Container(
+                              height: ParamsAxis(context).height * .65,
+                              width: ParamsAxis(context).width * .4,
+                              child: ListView.builder(
+                                itemCount: articlesData.length,
+                                shrinkWrap: false,
+                                itemBuilder: (BuildContext context, int index) {
+                                  if (index >= 0 && index < 4) {
+                                    return Padding(
+                                      padding: const EdgeInsets.only(top: 10.0),
+                                      child: InkWell(
+                                        onTap: () {
+                                          if (selectedIndexes.contains(index)) {
+                                            Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ArticleFull(
+                                                  image: articlesData[index]
+                                                      .mainImage,
+                                                  title:
+                                                      articlesData[index].name,
+                                                  bigText: articlesData[index]
+                                                      .mainText,
+                                                ),
                                               ),
-                                            ),
-                                          );
-                                        } else {
-                                          selectedIndexes.add(index);
-                                          saveSelectedIndexes();
-                                          Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                              builder: (context) => ArticleFull(
-                                                image: articlesData[index]
-                                                    .mainImage,
-                                                title: articlesData[index].name,
-                                                bigText: articlesData[index]
-                                                    .mainText,
+                                            );
+                                          } else {
+                                            selectedIndexes.add(index);
+                                            saveSelectedIndexes();
+                                            Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ArticleFull(
+                                                  image: articlesData[index]
+                                                      .mainImage,
+                                                  title:
+                                                      articlesData[index].name,
+                                                  bigText: articlesData[index]
+                                                      .mainText,
+                                                ),
                                               ),
-                                            ),
-                                          );
-                                        }
-                                      },
-                                      child: articleItem(
-                                        context,
-                                        articlesData[index].image,
-                                        articlesData[index].name,
-                                        articlesData[index].reward,
+                                            );
+                                          }
+                                        },
+                                        child: articleItem(
+                                          context,
+                                          articlesData[index].image,
+                                          articlesData[index].name,
+                                          articlesData[index].reward,
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                } else {
-                                  return Container();
-                                }
-                              },
+                                    );
+                                  } else {
+                                    return Container();
+                                  }
+                                },
+                              ),
                             ),
-                          ),
-                          const SizedBox(
-                            width: 20,
-                          ),
-                          Container(
-                            height: ParamsAxis(context).height * 0.65,
-                            width: ParamsAxis(context).width * 0.4,
-                            child: ListView.builder(
-                              itemCount: articlesData.length,
-                              shrinkWrap: false,
-                              itemBuilder: (BuildContext context, index) {
-                                if (index >= 4 && index <= 8) {
-                                  return Padding(
-                                    padding: const EdgeInsets.only(top: 10.0),
-                                    child: InkWell(
-                                      onTap: () {
-                                        if (selectedIndexes.contains(index)) {
-                                          Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                              builder: (context) => ArticleFull(
-                                                image: articlesData[index]
-                                                    .mainImage,
-                                                title: articlesData[index].name,
-                                                bigText: articlesData[index]
-                                                    .mainText,
+                            const SizedBox(
+                              width: 20,
+                            ),
+                            Container(
+                              height: ParamsAxis(context).height * 0.65,
+                              width: ParamsAxis(context).width * 0.4,
+                              child: ListView.builder(
+                                itemCount: articlesData.length,
+                                shrinkWrap: false,
+                                itemBuilder: (BuildContext context, index) {
+                                  if (index >= 4 && index <= 8) {
+                                    return Padding(
+                                      padding: const EdgeInsets.only(top: 10.0),
+                                      child: InkWell(
+                                        onTap: () {
+                                          if (selectedIndexes.contains(index)) {
+                                            Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ArticleFull(
+                                                  image: articlesData[index]
+                                                      .mainImage,
+                                                  title:
+                                                      articlesData[index].name,
+                                                  bigText: articlesData[index]
+                                                      .mainText,
+                                                ),
                                               ),
-                                            ),
-                                          );
-                                        } else {
-                                          selectedIndexes.add(index);
-                                          saveSelectedIndexes();
-                                          Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                              builder: (context) => ArticleFull(
-                                                image: articlesData[index]
-                                                    .mainImage,
-                                                title: articlesData[index].name,
-                                                bigText: articlesData[index]
-                                                    .mainText,
+                                            );
+                                          } else {
+                                            selectedIndexes.add(index);
+                                            saveSelectedIndexes();
+                                            Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                builder: (context) =>
+                                                    ArticleFull(
+                                                  image: articlesData[index]
+                                                      .mainImage,
+                                                  title:
+                                                      articlesData[index].name,
+                                                  bigText: articlesData[index]
+                                                      .mainText,
+                                                ),
                                               ),
-                                            ),
-                                          );
-                                        }
-                                      },
-                                      child: articleItem(
-                                        context,
-                                        articlesData[index].image,
-                                        articlesData[index].name,
-                                        articlesData[index].reward,
+                                            );
+                                          }
+                                        },
+                                        child: articleItem(
+                                          context,
+                                          articlesData[index].image,
+                                          articlesData[index].name,
+                                          articlesData[index].reward,
+                                        ),
                                       ),
-                                    ),
-                                  );
-                                } else {
-                                  return Container();
-                                }
-                              },
+                                    );
+                                  } else {
+                                    return Container();
+                                  }
+                                },
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),

@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/game/allGames/widgets/plus_minus_buttons.dart';
 import 'package:flutter_application_1/game/dataParams/constants.dart';
+import 'package:flutter_application_1/main.dart';
 import 'package:flutter_fortune_wheel/flutter_fortune_wheel.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -321,64 +323,68 @@ class _RouletePreviewScreenState extends State<RouleletePreviewScreen> {
                                     height: 10,
                                   ),
                                   Expanded(
-                                    child: SizedBox(
-                                      width: 85,
-                                      child: Center(
-                                        child: Stack(
-                                          children: [
-                                            Container(
-                                              height:
-                                                  ParamsAxis(context).height *
-                                                      .35,
-                                              width: 85,
-                                              child: Image.asset(
-                                                  'assets/images/icons/bg.png'),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  top: 5.0),
-                                              child: Align(
-                                                alignment: Alignment.topCenter,
-                                                child: InkWell(
-                                                  onTap: () {
-                                                    _setBet('plus');
-                                                  },
-                                                  child: Container(
-                                                    height: ParamsAxis(context)
-                                                            .height *
-                                                        .15,
-                                                    width: 85,
-                                                    child: Image.asset(
-                                                        'assets/images/icons/plus.png'),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  bottom: 30.0),
-                                              child: Align(
-                                                alignment:
-                                                    Alignment.bottomCenter,
-                                                child: InkWell(
-                                                  onTap: () {
-                                                    _setBet('minus');
-                                                  },
-                                                  child: Container(
-                                                    height: ParamsAxis(context)
-                                                            .height *
-                                                        .15,
-                                                    width: 85,
-                                                    child: Image.asset(
-                                                        'assets/images/icons/minus.png'),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
+                                    child: PlusMinusButtons(
+                                      onMinusTap: () => _setBet('minus'),
+                                      onPlusTap: () => _setBet('plus'),
                                     ),
+                                    // child: SizedBox(
+                                    //   width: 85,
+                                    //   child: Center(
+                                    //     child: Stack(
+                                    //       children: [
+                                    //         Container(
+                                    //           height:
+                                    //               ParamsAxis(context).height *
+                                    //                   .35,
+                                    //           width: 85,
+                                    //           child: Image.asset(
+                                    //               'assets/images/icons/bg.png'),
+                                    //         ),
+                                    //         Padding(
+                                    //           padding: const EdgeInsets.only(
+                                    //               top: 5.0),
+                                    //           child: Align(
+                                    //             alignment: Alignment.topCenter,
+                                    //             child: InkWell(
+                                    //               onTap: () {
+                                    //                 _setBet('plus');
+                                    //               },
+                                    //               child: Container(
+                                    //                 height: ParamsAxis(context)
+                                    //                         .height *
+                                    //                     .15,
+                                    //                 width: 85,
+                                    //                 child: Image.asset(
+                                    //                     'assets/images/icons/plus.png'),
+                                    //               ),
+                                    //             ),
+                                    //           ),
+                                    //         ),
+                                    //         Padding(
+                                    //           padding: const EdgeInsets.only(
+                                    //               bottom: 30.0),
+                                    //           child: Align(
+                                    //             alignment:
+                                    //                 Alignment.bottomCenter,
+                                    //             child: InkWell(
+                                    //               onTap: () {
+                                    //                 _setBet('minus');
+                                    //               },
+                                    //               child: Container(
+                                    //                 height: ParamsAxis(context)
+                                    //                         .height *
+                                    //                     .15,
+                                    //                 width: 85,
+                                    //                 child: Image.asset(
+                                    //                     'assets/images/icons/minus.png'),
+                                    //               ),
+                                    //             ),
+                                    //           ),
+                                    //         ),
+                                    //       ],
+                                    //     ),
+                                    //   ),
+                                    // ),
                                   ),
                                 ],
                               ),

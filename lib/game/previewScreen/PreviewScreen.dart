@@ -64,110 +64,112 @@ class _PreviewScreenGameState extends State<PreviewScreenGame> {
                   fit: BoxFit.cover,
                 ),
               ),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  const SizedBox(height: 12),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const SizedBox(
-                        width: 40,
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => RewardCoins(),
-                            ),
-                          );
-                        },
-                        child: Image.asset(
-                          'assets/images/icons/rewardDaily.png',
+              child: SafeArea(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    const SizedBox(height: 12),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const SizedBox(
                           width: 40,
-                          height: 40,
                         ),
-                      ),
-                      const Spacer(),
-                      InkWell(
-                        onTap: () {
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => RewardCoins(),
+                              ),
+                            );
+                          },
+                          child: Image.asset(
+                            'assets/images/icons/rewardDaily.png',
+                            width: 40,
+                            height: 40,
+                          ),
+                        ),
+                        const Spacer(),
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) => SettingsPreview(),
+                              ),
+                            );
+                          },
+                          child: Image.asset(
+                            'assets/images/icons/settings.png',
+                            width: 36,
+                            height: 36,
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 40,
+                        ),
+                      ],
+                    ),
+                    const Spacer(),
+                    Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Spacer(
+                          flex: 10,
+                        ),
+                        gameItemchoose(context, () {
+                          if (vibroValue == true) {
+                            Vibration.vibrate();
+                          }
                           Navigator.of(context).push(
                             MaterialPageRoute(
-                              builder: (context) => SettingsPreview(),
+                              builder: (context) => SlotGame(),
                             ),
                           );
-                        },
-                        child: Image.asset(
-                          'assets/images/icons/settings.png',
-                          width: 36,
-                          height: 36,
+                        }, 'assets/images/texts/slotMachine.png',
+                            'assets/images/gamesChoose/slot.png'),
+                        const Spacer(),
+                        gameItemchoose(context, () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => PookiesGame(),
+                            ),
+                          );
+                        }, 'assets/images/texts/pookies.png',
+                            'assets/images/gamesChoose/pook.png'),
+                        const Spacer(),
+                        gameItemchoose(context, () {
+                          if (vibroValue == true) {
+                            Vibration.vibrate();
+                          }
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => RouleletePreviewScreen(),
+                            ),
+                          );
+                        }, 'assets/images/texts/roulette.png',
+                            'assets/images/gamesChoose/roulete.png'),
+                        const Spacer(),
+                        gameItemchoosex(context, () {
+                          if (vibroValue == true) {
+                            Vibration.vibrate();
+                          }
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => ArticlesPreviewScreen(),
+                            ),
+                          );
+                        }, 'assets/images/texts/articles.png',
+                            'assets/images/gamesChoose/article.png'),
+                        const Spacer(
+                          flex: 10,
                         ),
-                      ),
-                      const SizedBox(
-                        width: 40,
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Spacer(
-                        flex: 10,
-                      ),
-                      gameItemchoose(context, () {
-                        if (vibroValue == true) {
-                          Vibration.vibrate();
-                        }
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => SlotGame(),
-                          ),
-                        );
-                      }, 'assets/images/texts/slotMachine.png',
-                          'assets/images/gamesChoose/slot.png'),
-                      const Spacer(),
-                      gameItemchoose(context, () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => PookiesGame(),
-                          ),
-                        );
-                      }, 'assets/images/texts/pookies.png',
-                          'assets/images/gamesChoose/pook.png'),
-                      const Spacer(),
-                      gameItemchoose(context, () {
-                        if (vibroValue == true) {
-                          Vibration.vibrate();
-                        }
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => RouleletePreviewScreen(),
-                          ),
-                        );
-                      }, 'assets/images/texts/roulette.png',
-                          'assets/images/gamesChoose/roulete.png'),
-                      const Spacer(),
-                      gameItemchoosex(context, () {
-                        if (vibroValue == true) {
-                          Vibration.vibrate();
-                        }
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) => ArticlesPreviewScreen(),
-                          ),
-                        );
-                      }, 'assets/images/texts/articles.png',
-                          'assets/images/gamesChoose/article.png'),
-                      const Spacer(
-                        flex: 10,
-                      ),
-                    ],
-                  ),
-                  const Spacer(),
-                ],
+                      ],
+                    ),
+                    const Spacer(),
+                  ],
+                ),
               ),
             );
           } else {
