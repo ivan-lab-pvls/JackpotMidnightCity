@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/game/dataParams/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class RewardOpened extends StatefulWidget {
   final int coins;
@@ -11,6 +14,52 @@ class RewardOpened extends StatefulWidget {
 }
 
 class _RewardOpenedState extends State<RewardOpened> {
+  late final SharedPreferences _shPrefs;
+
+  DateTime timeOfNextReward = DateTime(2000);
+  Duration? timeLeft;
+
+  Timer timer = Timer(const Duration(seconds: 1), () {});
+  var _inited = false;
+
+  @override
+  void initState() {
+    super.initState();
+
+    init();
+  }
+
+  @override
+  void dispose() {
+    timer.cancel();
+    super.dispose();
+  }
+
+  void init() async {
+    _shPrefs = await SharedPreferences.getInstance();
+    final cachedTime = _shPrefs.getString('lastRewardGiven');
+    final lastAwardGivenTime = DateTime.tryParse(cachedTime ?? '');
+    if (lastAwardGivenTime == null) {
+      setState(() {
+        _inited = true;
+      });
+      return;
+    }
+
+    if (DateTime.now().difference(lastAwardGivenTime).inSeconds >=
+        60 * 60 * 24) {
+      setState(() {
+        _inited = true;
+      });
+      return;
+    }
+
+    startTimer(lastAwardGivenTime);
+    setState(() {
+      _inited = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
@@ -44,7 +93,7 @@ class _RewardOpenedState extends State<RewardOpened> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const SizedBox(
-                        width: 40,
+                        width: 20,
                       ),
                       InkWell(
                         onTap: () {
@@ -65,9 +114,10 @@ class _RewardOpenedState extends State<RewardOpened> {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const SizedBox(
-                            width: 100,
-                          ),
+                          // const SizedBox(
+                          //   width: 50,
+                          // ),
+                          Spacer(),
                           Container(
                             height: ParamsAxis(context).height * .7,
                             width: ParamsAxis(context).width * .5,
@@ -76,45 +126,83 @@ class _RewardOpenedState extends State<RewardOpened> {
                               fit: BoxFit.cover,
                             ),
                           ),
-                          const SizedBox(
-                            width: 50,
-                          ),
+                          // const SizedBox(
+                          //   width: 50,
+                          // ),
+                          Spacer(),
+
                           Text(
-                            'WE GIVE YOU ${widget.coins}\nCOINS FOR DAILY\nLOGIN TO THE APPLICATION. WE ARE\nWAITING FOR YOU IN\n24 HOURS!',
+                            'WE GIVE YOU 200\nCOINS FOR DAILY\nLOGIN TO THE APPLICATION. WE ARE\nWAITING FOR YOU IN\n24 HOURS!',
                             style: GoogleFonts.bebasNeue(
                               color: const Color.fromARGB(255, 196, 48, 222),
                               fontWeight: FontWeight.w400,
                               fontSize: 24,
                             ),
                           ),
+                          Spacer(flex: 2),
                         ],
                       ),
                       Padding(
                         padding: const EdgeInsets.only(left: 400.0, top: 200),
                         child: Align(
                           alignment: Alignment.center,
-                          child: InkWell(
-                            onTap: () {},
-                            child: Container(
-                              height: 65,
-                              width: ParamsAxis(context).width * .15,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(25),
-                                gradient: const LinearGradient(
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
-                                  colors: [
-                                    Color.fromARGB(236, 29, 11, 35),
-                                    Color.fromARGB(232, 135, 33, 142)
-                                  ],
-                                ),
-                              ),
-                              child: Center(
-                                child: Image.asset(
-                                    'assets/images/texts/getReward.png'),
-                              ),
-                            ),
-                          ),
+                          child: _inited
+                              ? (timeLeft?.inSeconds ?? 0) <= 1
+                                  ? InkWell(
+                                      onTap: getReward,
+                                      child: Container(
+                                        height: 65,
+                                        width: ParamsAxis(context).width * .15,
+                                        decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(25),
+                                          gradient: const LinearGradient(
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                            colors: [
+                                              Color.fromARGB(236, 29, 11, 35),
+                                              Color.fromARGB(232, 135, 33, 142)
+                                            ],
+                                          ),
+                                        ),
+                                        child: Center(
+                                          child: Image.asset(
+                                              'assets/images/texts/getReward.png'),
+                                        ),
+                                      ),
+                                    )
+                                  : Container(
+                                      height: 85,
+                                      width: ParamsAxis(context).width * .17,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(25),
+                                        gradient: LinearGradient(
+                                          begin: Alignment.topLeft,
+                                          end: Alignment.bottomRight,
+                                          colors: [
+                                            const Color.fromARGB(
+                                                    236, 29, 11, 35)
+                                                .withOpacity(0.5),
+                                            const Color.fromARGB(
+                                                    232, 135, 33, 142)
+                                                .withOpacity(0.5),
+                                          ],
+                                        ),
+                                      ),
+                                      child: Center(
+                                        child: Text(
+                                          'NEXT:\n${_getTimeLeft(timeLeft!)}',
+                                          style: GoogleFonts.bebasNeue(
+                                            color: const Color.fromARGB(
+                                                255, 196, 48, 222),
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 24,
+                                          ),
+                                          textAlign: TextAlign.center,
+                                        ),
+                                      ),
+                                    )
+                              : const SizedBox(),
                         ),
                       ),
                     ],
@@ -128,5 +216,45 @@ class _RewardOpenedState extends State<RewardOpened> {
         },
       ),
     );
+  }
+
+  Future<void> getReward() async {
+    var coins = _shPrefs.getInt('coins') ?? 0;
+    coins += 200;
+    await _shPrefs.setInt('coins', coins);
+
+    final lastAwardGivenTime = DateTime.now();
+    _shPrefs.setString('lastRewardGiven', lastAwardGivenTime.toString());
+
+    startTimer(lastAwardGivenTime);
+  }
+
+  void startTimer(DateTime lastAwardGivenTime) {
+    timeOfNextReward = lastAwardGivenTime.add(const Duration(days: 1));
+
+    setState(() {
+      timeLeft = timeOfNextReward.difference(DateTime.now());
+    });
+
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      setState(() {
+        timeLeft = timeOfNextReward.difference(DateTime.now());
+      });
+      if (timeLeft!.inSeconds <= 1) {
+        timer.cancel();
+      }
+    });
+  }
+
+  String _getTimeLeft(Duration duration) {
+    final generalSeconds = duration.inSeconds;
+    final seconds = generalSeconds.remainder(60);
+    final minutes = (generalSeconds.remainder(60 * 60) / 60).floor();
+    final hours = (generalSeconds / (60 * 60)).floor();
+
+    final secondsFormatted = seconds.toString().padLeft(2, '0');
+    final minutesFormatted = minutes.toString().padLeft(2, '0');
+    final hoursFormatted = hours.toString().padLeft(2, '0');
+    return '$hoursFormatted:$minutesFormatted:$secondsFormatted';
   }
 }
