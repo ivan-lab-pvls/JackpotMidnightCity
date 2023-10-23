@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_1/game/allGames/pookies/pookies_game.dart';
 import 'package:flutter_application_1/game/allGames/slotGame/slotGamePreview.dart';
 import 'package:flutter_application_1/game/articles/articlesPreviewScreen.dart';
 import 'package:flutter_application_1/game/dataParams/constants.dart';
@@ -21,8 +22,8 @@ class PreviewScreenGame extends StatelessWidget {
         builder: (context, orientation) {
           if (orientation == Orientation.landscape) {
             return Container(
-              height: ParamsAxis(context).height,
-              width: ParamsAxis(context).width,
+              height: double.infinity,
+              width: double.infinity,
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image:
@@ -77,15 +78,12 @@ class PreviewScreenGame extends StatelessWidget {
                       ),
                     ],
                   ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                  Spacer(),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(
-                        width: 50,
+                      Spacer(
+                        flex: 10,
                       ),
                       gameItemchoose(context, () {
                         Navigator.of(context).push(
@@ -95,16 +93,22 @@ class PreviewScreenGame extends StatelessWidget {
                         );
                       }, 'assets/images/texts/slotMachine.png',
                           'assets/images/gamesChoose/slot.png'),
-                      gameItemchoose(
-                          context,
-                          () {},
-                          'assets/images/texts/pookies.png',
+                      Spacer(),
+                      gameItemchoose(context, () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (context) => PookiesGame(),
+                          ),
+                        );
+                      }, 'assets/images/texts/pookies.png',
                           'assets/images/gamesChoose/pook.png'),
+                      Spacer(),
                       gameItemchoose(
                           context,
                           () {},
                           'assets/images/texts/roulette.png',
                           'assets/images/gamesChoose/roulete.png'),
+                      Spacer(),
                       gameItemchoose(context, () {
                         Navigator.of(context).push(
                           MaterialPageRoute(
@@ -113,11 +117,12 @@ class PreviewScreenGame extends StatelessWidget {
                         );
                       }, 'assets/images/texts/articles.png',
                           'assets/images/gamesChoose/article.png'),
-                      const SizedBox(
-                        width: 50,
+                      Spacer(
+                        flex: 10,
                       ),
                     ],
-                  )
+                  ),
+                  Spacer(),
                 ],
               ),
             );

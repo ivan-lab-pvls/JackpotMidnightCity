@@ -39,6 +39,7 @@ dependencies:
   google_fonts: 
   connectivity:
   shared_preferences:
+  infinite_carousel: ^1.0.2
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +69,7 @@ flutter:
     - assets/images/gamesChoose/
     - assets/images/texts/
     - assets/images/slots/
+    - assets/images/pookies/
     - assets/images/articles/
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
