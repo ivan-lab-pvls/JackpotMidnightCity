@@ -131,12 +131,7 @@ class _PookiesGameState extends State<PookiesGame> {
                           child: Text(
                             'Bet: $bet',
                             style: GoogleFonts.bebasNeue(
-                              color: const Color.fromARGB(
-                                255,
-                                134,
-                                57,
-                                147,
-                              ),
+                              color: Color.fromARGB(255, 209, 63, 235),
                               fontWeight: FontWeight.bold,
                               fontSize: 50,
                             ),
@@ -332,17 +327,12 @@ class _PookiesGameState extends State<PookiesGame> {
                           height: ParamsAxis(context).height * 0.6,
                           child: Column(
                             children: [
-                            SizedBox(
+                              SizedBox(
                                 width: 150,
                                 child: Text(
                                   'Balance: ',
                                   style: GoogleFonts.bebasNeue(
-                                    color: const Color.fromARGB(
-                                      255,
-                                      134,
-                                      57,
-                                      147,
-                                    ),
+                                    color: Color.fromARGB(255, 209, 63, 235),
                                     fontWeight: FontWeight.bold,
                                     fontSize: 50,
                                   ),
@@ -352,12 +342,7 @@ class _PookiesGameState extends State<PookiesGame> {
                               Text(
                                 coins.toString(),
                                 style: GoogleFonts.bebasNeue(
-                                  color: const Color.fromARGB(
-                                    255,
-                                    134,
-                                    57,
-                                    147,
-                                  ),
+                                  color: Color.fromARGB(255, 209, 63, 235),
                                   fontWeight: FontWeight.bold,
                                   fontSize: 45,
                                 ),

@@ -299,28 +299,24 @@ class _RouletePreviewScreenState extends State<RouleletePreviewScreen> {
                                   mainAxisAlignment: MainAxisAlignment.start,
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   children: [
-                                  SizedBox(
-                                width: 150,
-                                child: Text(
-                                  'Balance: ',
-                                  style: GoogleFonts.bebasNeue(
-                                    color: const Color.fromARGB(
-                                      255,
-                                      134,
-                                      57,
-                                      147,
+                                    SizedBox(
+                                      width: 150,
+                                      child: Text(
+                                        'Balance: ',
+                                        style: GoogleFonts.bebasNeue(
+                                          color:
+                                              Color.fromARGB(255, 209, 63, 235),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 50,
+                                        ),
+                                      ),
                                     ),
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 50,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(height: 2),
+                                    const SizedBox(height: 2),
                                     Text(
                                       coins.toString(),
                                       style: GoogleFonts.bebasNeue(
-                                        color: const Color.fromARGB(
-                                            255, 134, 57, 147),
+                                        color:
+                                            Color.fromARGB(255, 209, 63, 235),
                                         fontWeight: FontWeight.bold,
                                         fontSize: 35,
                                       ),
@@ -435,10 +431,10 @@ class _RouletePreviewScreenState extends State<RouleletePreviewScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                         Text(
+                          Text(
                             'WIN:',
                             style: GoogleFonts.bebasNeue(
-                              color: const Color.fromARGB(255, 134, 57, 147),
+                              color: Color.fromARGB(255, 209, 63, 235),
                               fontWeight: FontWeight.bold,
                               fontSize: 35,
                             ),
@@ -449,7 +445,7 @@ class _RouletePreviewScreenState extends State<RouleletePreviewScreen> {
                           Text(
                             prizex.toString(),
                             style: GoogleFonts.bebasNeue(
-                              color: const Color.fromARGB(255, 134, 57, 147),
+                              color: Color.fromARGB(255, 209, 63, 235),
                               fontWeight: FontWeight.bold,
                               fontSize: 35,
                             ),
@@ -460,7 +456,7 @@ class _RouletePreviewScreenState extends State<RouleletePreviewScreen> {
                           Text(
                             'Bet: $bet',
                             style: GoogleFonts.bebasNeue(
-                              color: const Color.fromARGB(255, 134, 57, 147),
+                              color: Color.fromARGB(255, 209, 63, 235),
                               fontWeight: FontWeight.bold,
                               fontSize: 35,
                             ),

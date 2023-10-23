@@ -211,73 +211,73 @@ class _RewardCoinsState extends State<SlotGame> {
                               ),
                             ),
                             const SizedBox(height: 12),
-                            Expanded(
-                              flex: 2,
-                              child: Row(
-                                children: [
-                                  Expanded(
-                                    child: Center(
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Text(
-                            'WIN:',
-                            style: GoogleFonts.bebasNeue(
-                              color: const Color.fromARGB(255, 134, 57, 147),
-                              fontWeight: FontWeight.bold,
-                              fontSize: 35,
-                            ),
-                          ),
-                                          const SizedBox(width: 12),
-                                          Text(
-                                            win.toString(),
-                                            style: GoogleFonts.bebasNeue(
-                                              color: const Color.fromARGB(
-                                                255,
-                                                134,
-                                                57,
-                                                147,
+                            Container(
+                              height: 50,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(30),
+                                color: Color.fromARGB(127, 122, 58, 94),
+                              ),
+                              child: Expanded(
+                                flex: 2,
+                                child: Row(
+                                  children: [
+                                    Expanded(
+                                      child: Center(
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text(
+                                              'WIN:',
+                                              style: GoogleFonts.bebasNeue(
+                                                color: Color.fromARGB(
+                                                    255, 209, 63, 235),
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 35,
                                               ),
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 50,
                                             ),
-                                          ),
-                                        ],
+                                            const SizedBox(width: 12),
+                                            Text(
+                                              win.toString(),
+                                              style: GoogleFonts.bebasNeue(
+                                                color: Color.fromARGB(
+                                                    255, 209, 63, 235),
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 35,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                  Expanded(
-                                    child: Center(
-                                      child: Row(
-                                        mainAxisSize: MainAxisSize.min,
-                                        children: [
-                                          Text(
-                                            'Bet: $bet',
-                                            style: GoogleFonts.bebasNeue(
-                                              color: const Color.fromARGB(
-                                                255,
-                                                134,
-                                                57,
-                                                147,
+                                    Expanded(
+                                      child: Center(
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Text(
+                                              'Bet: $bet',
+                                              style: GoogleFonts.bebasNeue(
+                                                color: Color.fromARGB(
+                                                    255, 209, 63, 235),
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 35,
                                               ),
-                                              fontWeight: FontWeight.bold,
-                                              fontSize: 50,
                                             ),
-                                          ),
-                                          // const SizedBox(width: 12),
-                                          // Text(
-                                          //   bet.toString(),
-                                          //   style: TextStyle(
-                                          //     color: Colors.white,
-                                          //     fontWeight: FontWeight.w500,
-                                          //     fontSize: 40,
-                                          //   ),
-                                          // ),
-                                        ],
+                                            // const SizedBox(width: 12),
+                                            // Text(
+                                            //   bet.toString(),
+                                            //   style: TextStyle(
+                                            //     color: Colors.white,
+                                            //     fontWeight: FontWeight.w500,
+                                            //     fontSize: 40,
+                                            //   ),
+                                            // ),
+                                          ],
+                                        ),
                                       ),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
                             ),
                           ],
@@ -287,38 +287,40 @@ class _RewardCoinsState extends State<SlotGame> {
                       Column(
                         children: [
                           Spacer(),
-                          SizedBox(
+                          Container(
                             height: ParamsAxis(context).height * 0.6,
                             child: Column(
                               children: [
-                                SizedBox(
-                                  width: 150,
-                                  child: Text(
-                                    'Balance: ',
-                                    style: GoogleFonts.bebasNeue(
-                                      color: const Color.fromARGB(
-                                        255,
-                                        134,
-                                        57,
-                                        147,
-                                      ),
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 50,
-                                    ),
+                                Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(30),
+                                    color: Color.fromARGB(177, 122, 58, 94),
                                   ),
-                                ),
-                                const SizedBox(height: 2),
-                                Text(
-                                  coins.toString(),
-                                  style: GoogleFonts.bebasNeue(
-                                    color: const Color.fromARGB(
-                                      255,
-                                      134,
-                                      57,
-                                      147,
-                                    ),
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 45,
+                                  child: Column(
+                                    children: [
+                                      SizedBox(
+                                        width: 150,
+                                        child: Text(
+                                          'Balance: ',
+                                          style: GoogleFonts.bebasNeue(
+                                            color: Color.fromARGB(
+                                                255, 226, 60, 255),
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 50,
+                                          ),
+                                        ),
+                                      ),
+                                      const SizedBox(height: 2),
+                                      Text(
+                                        coins.toString(),
+                                        style: GoogleFonts.bebasNeue(
+                                          color:
+                                              Color.fromARGB(255, 226, 60, 255),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 45,
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                                 const SizedBox(height: 10),
