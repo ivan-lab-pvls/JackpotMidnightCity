@@ -13,7 +13,6 @@ Widget gameItemchoose(
     children: [
       SizedBox(
         height: 20,
-        width: 100,
         child: Image.asset(text),
       ),
       const SizedBox(
