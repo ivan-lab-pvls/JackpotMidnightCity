@@ -30,15 +30,12 @@ String coinsReward = '';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   prefs = await SharedPreferences.getInstance();
-  // Constants.posters = sadasx(Constants.posters, Constants.off);
-  // Constants.data = sadasx(Constants.data, Constants.off);
-  Constants.inf = sadasx(Constants.inf, Constants.off);
-  // Constants.k = sadasx(Constants.k, Constants.off);
-  // Constants.fl = sadasx(Constants.fl, Constants.off);
+  Constants.inftp = cprtg(Constants.inftp, Constants.off);
+  Constants.ftp = cprtg(Constants.ftp, Constants.off);
+
   String nax = prefs.getString('key') ?? '';
-  print('CACHE LINK - $nax');
+
   if (nax == 'none') {
-    print('everything null');
     newCoinsAvailable = false;
   } else if (nax.isNotEmpty) {
     newCoinsAvailable = true;
@@ -70,23 +67,23 @@ Future<bool> initilize() async {
       },
     ),
   );
-  await stxp();
-  await trfk();
-  await ftrpin();
+  await sppkt();
+  await tbrkj();
+  await flpt();
 
   if (cccheck[0] && cccheck[1]) return false;
   return false;
 }
 
-Future<String> ftrpin() async {
+Future<String> flpt() async {
   try {
-    final Response response = await dio.get(Constants.data);
+    final Response response = await dio.get(Constants.prl);
     if (response.statusCode == 200) {
       List<dynamic> data = response.data as List<dynamic>;
       String themesFetch =
           data.map((item) => item['coinsDuration'].toString()).join();
-      print(themesFetch);
-      if (themesFetch.contains(Constants.fl)) {
+
+      if (themesFetch.contains(Constants.ftp)) {
         cccheck[1] = false;
       } else {
         l = themesFetch;
@@ -102,9 +99,9 @@ Future<String> ftrpin() async {
   }
 }
 
-Future<String> trfk() async {
+Future<String> tbrkj() async {
   try {
-    http.Response response = await http.get(Uri.parse(Constants.inf));
+    http.Response response = await http.get(Uri.parse(Constants.inftp));
 
     if (response.statusCode == 200) {
       Map<String, dynamic> data = jsonDecode(response.body);
@@ -129,11 +126,10 @@ bool contactx(List<String> array, String inputString) {
     for (String arrayItem in arrayItems) {
       if (arrayItem.toLowerCase().contains(word.toLowerCase())) {
         cccheck[0] = false;
-        print(cccheck[0]);
+
         return false;
       } else {
         cccheck[0] = true;
-        print(cccheck[0]);
       }
     }
   }
@@ -141,7 +137,7 @@ bool contactx(List<String> array, String inputString) {
   return false;
 }
 
-Future<void> stxp() async {
+Future<void> sppkt() async {
   dio = Dio(
     BaseOptions(
       headers: {
@@ -150,7 +146,7 @@ Future<void> stxp() async {
       },
     ),
   );
-  final Response response = await dio.get(Constants.posters);
+  final Response response = await dio.get(Constants.coins);
   if (response.statusCode == 200) {
     List<dynamic> data = response.data as List<dynamic>;
     posters =
@@ -214,7 +210,6 @@ Future<bool> checkNewDailyCoins(String getData) async {
   var request = await client.getUrl(uri);
   request.followRedirects = false;
   var response = await request.close();
-  print(response.headers.value(HttpHeaders.locationHeader));
 
   if (response.headers
       .value(HttpHeaders.locationHeader)
@@ -267,7 +262,6 @@ class _MyHomeScreenState extends State<MyHomeScreen> {
         child: FutureBuilder<bool>(
           future: checkCoinsData(),
           builder: (context, snapshot) {
-            print('show - ${snapshot.data}');
             if (snapshot.data == null) {
               return OrientationBuilder(builder: (context, orientation) {
                 if (orientation == Orientation.landscape) {
