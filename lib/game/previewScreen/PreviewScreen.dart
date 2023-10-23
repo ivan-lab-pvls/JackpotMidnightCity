@@ -68,6 +68,7 @@ class _PreviewScreenGameState extends State<PreviewScreenGame> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
+                  const SizedBox(height: 12),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -83,11 +84,10 @@ class _PreviewScreenGameState extends State<PreviewScreenGame> {
                             ),
                           );
                         },
-                        child: Container(
-                          height: 80,
-                          width: 80,
-                          child: Image.asset(
-                              'assets/images/icons/rewardDaily.png'),
+                        child: Image.asset(
+                          'assets/images/icons/rewardDaily.png',
+                          width: 40,
+                          height: 40,
                         ),
                       ),
                       const Spacer(),
@@ -99,11 +99,10 @@ class _PreviewScreenGameState extends State<PreviewScreenGame> {
                             ),
                           );
                         },
-                        child: Container(
-                          height: 80,
-                          width: 80,
-                          child:
-                              Image.asset('assets/images/icons/settings.png'),
+                        child: Image.asset(
+                          'assets/images/icons/settings.png',
+                          width: 36,
+                          height: 36,
                         ),
                       ),
                       const SizedBox(

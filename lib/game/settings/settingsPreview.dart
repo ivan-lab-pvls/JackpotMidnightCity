@@ -144,12 +144,12 @@ class _SettingsPreviewState extends State<SettingsPreview>
                             onChanged: (value) {
                               if (value) {
                                 setState(() {
-                                  prefs.setBool('vibro', true);
+                                  switchValueVibro = true;
                                 });
                                 prefs.setBool('vibro', true);
                               } else {
                                 setState(() {
-                                  prefs.setBool('vibro', false);
+                                  switchValueVibro = false;
                                 });
                                 prefs.setBool('vibro', false);
                               }
