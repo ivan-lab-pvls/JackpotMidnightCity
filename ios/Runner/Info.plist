@@ -24,6 +24,8 @@
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>UIRequiresFullScreen</key>
+	<true/>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Audio is essential for the app's features</string>
 	<key>UILaunchStoryboardName</key>

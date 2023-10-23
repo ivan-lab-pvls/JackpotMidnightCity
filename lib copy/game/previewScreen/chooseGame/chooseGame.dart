@@ -11,7 +11,7 @@ Widget gameItemchoose(
     mainAxisAlignment: MainAxisAlignment.center,
     crossAxisAlignment: CrossAxisAlignment.center,
     children: [
-      SizedBox(
+      Container(
         height: 40,
         width: 150,
         child: Image.asset(text),

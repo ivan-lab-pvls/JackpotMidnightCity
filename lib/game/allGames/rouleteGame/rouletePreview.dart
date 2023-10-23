@@ -399,7 +399,7 @@ class _RouletePreviewScreenState extends State<RouleletePreviewScreen> {
                           Text(
                             'WIN:',
                             style: GoogleFonts.bebasNeue(
-                              color: const Color.fromARGB(255, 134, 57, 147),
+                              color: Color.fromARGB(255, 209, 63, 235),
                               fontWeight: FontWeight.bold,
                               fontSize: 35,
                             ),
@@ -410,7 +410,7 @@ class _RouletePreviewScreenState extends State<RouleletePreviewScreen> {
                           Text(
                             prizex.toString(),
                             style: GoogleFonts.bebasNeue(
-                              color: const Color.fromARGB(255, 134, 57, 147),
+                              color: Color.fromARGB(255, 209, 63, 235),
                               fontWeight: FontWeight.bold,
                               fontSize: 35,
                             ),
@@ -421,7 +421,7 @@ class _RouletePreviewScreenState extends State<RouleletePreviewScreen> {
                           Text(
                             'Bet: $bet',
                             style: GoogleFonts.bebasNeue(
-                              color: const Color.fromARGB(255, 134, 57, 147),
+                              color: Color.fromARGB(255, 209, 63, 235),
                               fontWeight: FontWeight.bold,
                               fontSize: 35,
                             ),

@@ -9,7 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'game/dataParams/constants.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:dio/dio.dart';
-import 'game/music.dart';
+import 'music.dart';
 import 'game/previewScreen/PreviewScreen.dart';
 import 'game/settings/con.dart';
 import 'game/settings/privx.dart';
@@ -28,6 +28,12 @@ bool chx = false;
 String coinsReward = '';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight,
+    DeviceOrientation.portraitDown,
+    DeviceOrientation.portraitUp,
+  ]);
   prefs = await SharedPreferences.getInstance();
   // Constants.posters = sadasx(Constants.posters, Constants.off);
   // Constants.data = sadasx(Constants.data, Constants.off);
@@ -49,6 +55,8 @@ Future<void> main() async {
 
   runApp(MyApp());
 }
+
+
 
 Dio dio = Dio();
 Future<bool> initilize() async {
