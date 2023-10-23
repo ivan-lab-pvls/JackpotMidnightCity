@@ -1,18 +1,42 @@
 import 'dart:ui';
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_application_1/game/dataParams/constants.dart';
+import 'package:flutter_application_1/game/music.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
+final player = AudioPlayer();
 
 class SettingsPreview extends StatefulWidget {
   @override
   State<SettingsPreview> createState() => _SettingsPreviewState();
 }
 
-class _SettingsPreviewState extends State<SettingsPreview> {
-  bool switchValueSound = true;
+class _SettingsPreviewState extends State<SettingsPreview>
+    with WidgetsBindingObserver {
+  final audioControl = AudioControl();
+  bool switchValueSound = false;
   bool switchValueVibro = false;
+  late SharedPreferences prefs;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    _loadSharedPreferences();
+  }
+
+
+  Future<void> _loadSharedPreferences() async {
+    prefs = await SharedPreferences.getInstance();
+    setState(() {
+      switchValueSound = prefs.getBool('music') ?? false;
+      switchValueVibro = prefs.getBool('vibro') ?? false;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,6 +122,7 @@ class _SettingsPreviewState extends State<SettingsPreview> {
                             onChanged: (value) {
                               setState(() {
                                 switchValueSound = value;
+                                prefs.setBool('music', value);
                               });
                             },
                           ),
@@ -123,9 +148,17 @@ class _SettingsPreviewState extends State<SettingsPreview> {
                           CupertinoSwitch(
                             value: switchValueVibro,
                             onChanged: (value) {
-                              setState(() {
-                                switchValueVibro = value;
-                              });
+                              if (value) {
+                                setState(() {
+                                  prefs.setBool('vibro', true);
+                                });
+                                prefs.setBool('vibro', true);
+                              } else {
+                                setState(() {
+                                  prefs.setBool('vibro', false);
+                                });
+                                prefs.setBool('vibro', false);
+                              }
                             },
                           ),
                           const Spacer(),
@@ -171,8 +204,8 @@ class _SettingsPreviewState extends State<SettingsPreview> {
                           ),
                         ),
                         child: Center(
-                          child:
-                              Image.asset('assets/images/texts/privacyPolicy.png'),
+                          child: Image.asset(
+                              'assets/images/texts/privacyPolicy.png'),
                         ),
                       ),
                       const SizedBox(
